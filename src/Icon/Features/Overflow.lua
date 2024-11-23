@@ -83,8 +83,6 @@ function Overflow.updateAvailableIcons(alignment)
 
 	-- We only track items that are directly on the topbar (i.e. not within a parent icon)
 	local ourTotal = 0
-	local holder = holders[alignment]
-	local holderUIList = holder.UIListLayout
 	local ourOrderedIcons = {}
 	for _, icon in pairs(iconsDict) do
 		local parentUID = icon.parentIconUID
@@ -120,6 +118,8 @@ function Overflow.updateAvailableIcons(alignment)
 			return false
 		elseif hasParentA then
 			return true
+		else
+			return false
 		end
 	end)
 
@@ -132,7 +132,6 @@ end
 function Overflow.getRealXPositions(alignment, orderedIcons)
 	-- We calculate the the absolute position of icons instead of reading
 	-- directly to determine where they would be if not within an overflow
-	local joinOverflow = false
 	local isLeft = alignment == "Left"
 	local holder = holders[alignment]
 	local holderXPos = holder.AbsolutePosition.X
@@ -210,7 +209,6 @@ function Overflow.updateBoundary(alignment)
 	local oppositeOverflowIcon = overflowIcons[oppositeAlignment]
 	local boundary = (isLeft and holderXPos + holderXSize) or holderXPos
 	if nearestOppositeIcon then
-		local oppositeEndWidget = nearestOppositeIcon.widget
 		local oppositeRealXPositions = Overflow.getRealXPositions(oppositeAlignment, oppositeOrderedIcons)
 		local oppositeX = oppositeRealXPositions[nearestOppositeIcon.UID]
 		local oppositeXSize = Overflow.getWidth(nearestOppositeIcon)

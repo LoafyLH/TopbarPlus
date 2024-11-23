@@ -178,9 +178,10 @@ return function(icon, Icon)
 	iconImageCorner.Name = "IconImageCorner"
 	iconImageCorner.Parent = iconImage
 
+	local alignment
+
 	local TweenService = game:GetService("TweenService")
 	local resizingCount = 0
-	local repeating = false
 	local function handleLabelAndImageChangesUnstaggered(forceUpdateString)
 
 		-- We defer changes by a frame to eliminate all but 1 requests which
@@ -193,7 +194,6 @@ return function(icon, Icon)
 			local usingIndicator = indicator and indicator.Visible
 			local usingText = usingIndicator or iconLabel.Text ~= ""
 			local usingImage = iconImage.Image ~= "" and iconImage.Image ~= nil
-			local alignment = Enum.HorizontalAlignment.Center
 			local NORMAL_BUTTON_SIZE = UDim2.fromScale(1, 1)
 			local buttonSize = NORMAL_BUTTON_SIZE
 			if usingImage and not usingText then
@@ -350,7 +350,6 @@ return function(icon, Icon)
 	local function updateBorderSize()
 		task.defer(function()
 			local borderOffset = widget:GetAttribute("BorderSize")
-			local alignment = icon.alignment
 			local alignmentOffset = (iconSpot.Visible == false and 0) or (alignment == "Right" and -borderOffset) or borderOffset
 			menu.Position = UDim2.new(0, alignmentOffset, 0, 0)
 			menuGap.Size = UDim2.fromOffset(borderOffset, 0)

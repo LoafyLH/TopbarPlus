@@ -20,13 +20,14 @@ PACKAGE MODIFICATIONS:
 -- roblox-ts support by OverHash and Validark
 -- LinkToInstance fixed by Elttob.
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local Heartbeat = RunService.Heartbeat
 local function getPromiseReference()
 	if RunService:IsRunning() then
-		local main = require(game:GetService("ReplicatedStorage").Framework)
-		return main.modules.Promise
+		return ReplicatedStorage.Packages._Index["lukadev-0_typed-promise@4.0.2"]["typed-promise"]
 	end
+	return nil
 end
 
 local IndicesReference = newproxy(true)
@@ -215,6 +216,7 @@ function Janitor.__index:Get(Index)
 	if This then
 		return This[Index]
 	end
+	return nil
 end
 
 --[[**

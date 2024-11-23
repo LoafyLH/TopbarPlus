@@ -42,10 +42,8 @@ function Gamepad.start(incomingIcon)
 		
 		-- This enables users to instantly open up their last selected icon
 		local previousHighlightedIcon
-		local iconDisplayingHighlightKey
 		local usedIndicatorOnce = false
 		local usedBOnce = false
-		local Utility = require(script.Parent.Parent.Utility)
 		local Selection = require(script.Parent.Parent.Elements.Selection)
 		local function updateSelectedObject()
 			local icon = getIconFromSelectedObject()

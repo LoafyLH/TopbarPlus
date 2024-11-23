@@ -40,7 +40,6 @@ return function(Icon)
 	
 	local screenGuiCenter = screenGui:Clone()
 	local holdersCenter = screenGuiCenter.Holders
-	local GuiService = game:GetService("GuiService")
 	local function updateCenteredHoldersHeight()
 		holdersCenter.Size = UDim2.new(1, 0, 0, GuiService.TopbarInset.Height+ySizeOffset)
 	end

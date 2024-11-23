@@ -154,8 +154,6 @@ return function(icon)
 				icon.startMenuUpdate:Fire()
 			end)
 		end
-		local iconButton = icon:getInstance("IconButton")
-		local previousButtonWidth = iconButton.AbsoluteSize.X
 		menuJanitor:add(menu.ChildAdded:Connect(startMenuUpdate))
 		menuJanitor:add(menu.ChildRemoved:Connect(startMenuUpdate))
 		menuJanitor:add(menu:GetAttributeChangedSignal("MaxIcons"):Connect(startMenuUpdate))
@@ -171,7 +169,6 @@ return function(icon)
 			otherIcon:destroy()
 		end
 		-- Apply new icons
-		local totalNewIcons = #arrayOfIcons
 		if type(arrayOfIcons) == "table" then
 			for i, otherIcon in pairs(arrayOfIcons) do
 				otherIcon:joinMenu(icon)
